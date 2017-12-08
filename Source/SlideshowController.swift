@@ -8,19 +8,19 @@
 
 import UIKit
 
-protocol SlideshowControllerDelegate: class {
+public protocol SlideshowControllerDelegate: class {
     var screenCount: Int { get set }
 }
 
-protocol SlideshowControllerDataSource: class {
+public protocol SlideshowControllerDataSource: class {
     var isEmpty: Bool {get}
     func slideshowItemID(afterID: String) -> String?
     func slideshowItem(afterID: String?) -> SlideshowItem?
 }
 
-class SlideshowController {
-    static var defaultSlideDuration: TimeInterval = 10.0
-    static var defaultTransitionDuration: TimeInterval = 1.0
+public class SlideshowController {
+    public static var defaultSlideDuration: TimeInterval = 10.0
+    public static var defaultTransitionDuration: TimeInterval = 1.0
     
     var dataSource: SlideshowControllerDataSource {
         return self.slideTransitionCoordinator.slideshowDataSource
@@ -34,7 +34,7 @@ class SlideshowController {
     
     fileprivate var timer = SlideshowTimer()
     
-    init(dataSource: SlideshowControllerDataSource, defaultImage image: UIImage?) {
+    public init(dataSource: SlideshowControllerDataSource, defaultImage image: UIImage?) {
         self.defaultImage = image
         
         self.slideTransitionCoordinator = SlideshowTransitionCoordinator(dataSource: dataSource)
@@ -70,7 +70,7 @@ class SlideshowController {
 }
 
 extension SlideshowController {
-    func attach(toScreen screen: UIScreen) {
+    public func attach(toScreen screen: UIScreen) {
         guard self.slideTransitionCoordinator.fullscreenViews[screen] == nil else {
             return
         }
@@ -87,7 +87,7 @@ extension SlideshowController {
         self.delegate?.screenCount += 1
     }
     
-    func detach(fromScreen screen: UIScreen) {
+    public func detach(fromScreen screen: UIScreen) {
         guard self.slideTransitionCoordinator.fullscreenViews[screen] != nil else {
             return
         }
@@ -97,7 +97,7 @@ extension SlideshowController {
         self.delegate?.screenCount -= 1
     }
     
-    func attach(toView view: UIView) {
+    public func attach(toView view: UIView) {
         guard self.slideTransitionCoordinator.frameViews.contains(view) == false else {
             return
         }
@@ -105,8 +105,14 @@ extension SlideshowController {
         if let image = self.defaultImage {
             let imageView = UIImageView(image: image)
             imageView.contentMode = .scaleAspectFit
-            view.addAutoSubview(imageView)
-            Layout.pinAllSides(of: imageView, to: view, in: view)
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(imageView)
+            NSLayoutConstraint.activate([
+                NSLayoutConstraint(item: imageView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: imageView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: imageView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: imageView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0),
+                ])
         }
         
         self.slideTransitionCoordinator.add(slideshowInView: view)
@@ -116,7 +122,7 @@ extension SlideshowController {
         self.delegate?.screenCount += 1
     }
     
-    func detach(fromView view: UIView) {
+    public func detach(fromView view: UIView) {
         guard self.slideTransitionCoordinator.frameViews.contains(view) else {
             return
         }
@@ -125,7 +131,7 @@ extension SlideshowController {
         self.delegate?.screenCount -= 1
     }
     
-    func detachAll() {
+    public func detachAll() {
         self.slideTransitionCoordinator.removeAllSlideshows()
         self.delegate?.screenCount = 0
     }

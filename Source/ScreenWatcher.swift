@@ -8,10 +8,10 @@
 
 import UIKit
 
-class ScreenWatcher {
+public class ScreenWatcher {
     weak var delegate: ExternalScreenDelegateProtocol?
     
-    init(notify: ExternalScreenDelegateProtocol) {
+    public init(notify: ExternalScreenDelegateProtocol) {
         self.delegate = notify
         
         NotificationCenter.default.addObserver(self, selector: #selector(screenConnected), name: .UIScreenDidConnect, object: nil)

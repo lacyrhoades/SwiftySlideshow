@@ -164,16 +164,20 @@ class SlideshowTransitionCoordinator {
         
         for frameView in self.frameViews {
             let mediaView = self.mediaView(forItem: item)
-            frameView.addAutoSubview(mediaView)
+            mediaView.translatesAutoresizingMaskIntoConstraints = false
+            frameView.addSubview(mediaView)
             
             #if DEBUG
-            mediaView.border(2.0, .gray)
+            mediaView.layer.borderWidth = 2.0
+            mediaView.layer.borderColor = UIColor.purple.cgColor
             #endif
             
             let centerYConstraint = NSLayoutConstraint(item: mediaView, attribute: .centerY, relatedBy: .equal, toItem: frameView, attribute: .centerY, multiplier: 1, constant: frameView.bounds.height * -1)
-            Layout.matchHeight(ofView: mediaView, toView: frameView, inView: frameView, byFactorOf: 1.0)
-            Layout.matchWidth(ofView: mediaView, toView: frameView, inView: frameView, byFactorOf: 1.0)
-            Layout.centerX(mediaView)
+            NSLayoutConstraint.activate([
+                NSLayoutConstraint(item: mediaView, attribute: .height, relatedBy: .equal, toItem: frameView, attribute: .height, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: mediaView, attribute: .width, relatedBy: .equal, toItem: frameView, attribute: .width, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: mediaView, attribute: .centerX, relatedBy: .equal, toItem: frameView, attribute: .centerX, multiplier: 1, constant: 0)
+            ])
             frameView.addConstraint(centerYConstraint)
             frameView.layoutIfNeeded()
             

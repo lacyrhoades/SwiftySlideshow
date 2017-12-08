@@ -19,8 +19,14 @@ class SlideshowViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        view.addAutoSubview(self.slideshowView)
-        Layout.pinAllSides(of: slideshowView, to: view, in: view)
+        slideshowView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(slideshowView)
+        NSLayoutConstraint.activate([
+            NSLayoutConstraint(item: slideshowView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: slideshowView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: slideshowView, attribute: .top, relatedBy: .equal, toItem: view, attribute: .top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: slideshowView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0),
+            ])
     }
 }
 
@@ -44,8 +50,15 @@ extension SlideshowViewController {
             return
         }
         self.window = ourView
-        toView.addAutoSubview(ourView)
-        Layout.pinAllSides(of: ourView, to: toView, in: toView)
+        ourView.translatesAutoresizingMaskIntoConstraints = false
+        toView.addSubview(ourView)
+        
+        NSLayoutConstraint.activate([
+            NSLayoutConstraint(item: ourView, attribute: .leading, relatedBy: .equal, toItem: toView, attribute: .leading, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: ourView, attribute: .trailing, relatedBy: .equal, toItem: toView, attribute: .trailing, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: ourView, attribute: .top, relatedBy: .equal, toItem: toView, attribute: .top, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: ourView, attribute: .bottom, relatedBy: .equal, toItem: toView, attribute: .bottom, multiplier: 1, constant: 0)
+            ])
     }
     
     func deteach(fromView view: UIView) {

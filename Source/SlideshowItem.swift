@@ -8,20 +8,20 @@
 
 import UIKit
 
-typealias SlideshowItemLoadCompletionBlock = ([Data]) -> ()
-typealias MediaFetchBlock = ((_: @escaping SlideshowItemLoadCompletionBlock) -> ())
+public typealias SlideshowItemLoadCompletionBlock = ([Data]) -> ()
+public typealias MediaFetchBlock = ((_: @escaping SlideshowItemLoadCompletionBlock) -> ())
 
-enum SlideshowItemType {
+public enum SlideshowItemType {
     case image
     case video
 }
 
-struct SlideshowItem {
+public struct SlideshowItem {
     var id: String
     var type: SlideshowItemType
     var fetchMediaDatas: MediaFetchBlock? = nil
     
-    init(id: String, type: SlideshowItemType, fetch: @escaping MediaFetchBlock) {
+    public init(id: String, type: SlideshowItemType, fetch: @escaping MediaFetchBlock) {
         self.id = id
         self.type = type
         self.fetchMediaDatas = fetch
@@ -29,13 +29,13 @@ struct SlideshowItem {
 }
 
 extension SlideshowItem: Hashable {
-    var hashValue: Int {
+    public var hashValue: Int {
         return self.id.hashValue
     }
 }
 
 extension SlideshowItem: Equatable {
-    static func ==(lhs: SlideshowItem, rhs: SlideshowItem) -> Bool {
+    public static func ==(lhs: SlideshowItem, rhs: SlideshowItem) -> Bool {
         return lhs.id == rhs.id
     }
 }
