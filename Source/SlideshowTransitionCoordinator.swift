@@ -191,12 +191,12 @@ class SlideshowTransitionCoordinator {
         switch item.type {
         case .image:
             let imageView = UIImageView()
-            imageView.backgroundColor = .white
+            imageView.backgroundColor = SlideshowController.slideBackgroundColor
             imageView.contentMode = .scaleAspectFit
             return imageView
         case .video:
             let mediaView = WebVideoView()
-            mediaView.backgroundColor = .white
+            mediaView.backgroundColor = SlideshowController.slideBackgroundColor
             return mediaView
         }
     }

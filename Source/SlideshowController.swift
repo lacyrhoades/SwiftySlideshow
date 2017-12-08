@@ -21,6 +21,7 @@ public protocol SlideshowControllerDataSource: class {
 public class SlideshowController {
     public static var defaultSlideDuration: TimeInterval = 10.0
     public static var defaultTransitionDuration: TimeInterval = 1.0
+    public static var slideBackgroundColor: UIColor = .white
     
     var dataSource: SlideshowControllerDataSource {
         return self.slideTransitionCoordinator.slideshowDataSource
