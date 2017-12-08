@@ -23,7 +23,7 @@ public class SlideshowController {
     public static var defaultTransitionDuration: TimeInterval = 1.0
     public static var slideBackgroundColor: UIColor = .white
     
-    var dataSource: SlideshowControllerDataSource {
+    public var dataSource: SlideshowControllerDataSource {
         return self.slideTransitionCoordinator.slideshowDataSource
     }
     
@@ -48,7 +48,7 @@ public class SlideshowController {
         }
     }
     
-    func changeTo(duration: TimeInterval) {
+    public func changeTo(duration: TimeInterval) {
         SlideshowController.defaultSlideDuration = duration
         self.pause()
         self.unpause()
@@ -98,8 +98,12 @@ extension SlideshowController {
         self.delegate?.screenCount -= 1
     }
     
+    public func isAttached(toView view: UIView) -> Bool {
+        return self.slideTransitionCoordinator.frameViews.contains(view)
+    }
+    
     public func attach(toView view: UIView) {
-        guard self.slideTransitionCoordinator.frameViews.contains(view) == false else {
+        guard self.isAttached(toView: view) == false else {
             return
         }
         
@@ -124,7 +128,7 @@ extension SlideshowController {
     }
     
     public func detach(fromView view: UIView) {
-        guard self.slideTransitionCoordinator.frameViews.contains(view) else {
+        guard self.isAttached(toView: view) else {
             return
         }
         
