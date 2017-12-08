@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DemoPreviewView" customModule="SwiftySlideshow" customModuleProvider="target">
+            <connections>
+                <outlet property="innerView" destination="3gr-vR-Jif" id="Ehz-8O-fhM"/>
+                <outlet property="startButton" destination="rdt-jG-PiZ" id="7b5-bQ-pUs"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cW3-kW-eu1">
+                    <rect key="frame" x="-396.5" y="0.0" width="1167" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gr-vR-Jif">
+                            <rect key="frame" x="12" y="12" width="1143" height="643"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="3gr-vR-Jif" secondAttribute="height" multiplier="16:9" id="1yg-r1-2fg"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <constraints>
+                        <constraint firstItem="3gr-vR-Jif" firstAttribute="top" secondItem="cW3-kW-eu1" secondAttribute="top" constant="12" id="Lb5-Bb-mxn"/>
+                        <constraint firstAttribute="bottom" secondItem="3gr-vR-Jif" secondAttribute="bottom" constant="12" id="c9H-zl-Bcq"/>
+                        <constraint firstItem="3gr-vR-Jif" firstAttribute="leading" secondItem="cW3-kW-eu1" secondAttribute="leading" constant="12" id="g38-EW-AAx"/>
+                        <constraint firstAttribute="trailing" secondItem="3gr-vR-Jif" secondAttribute="trailing" constant="12" id="gNZ-q4-44p"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdt-jG-PiZ" userLabel="Start Button">
+                    <rect key="frame" x="38" y="318" width="299" height="30"/>
+                    <state key="normal" title="Tap to show slideshow contents in this view"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="cW3-kW-eu1" secondAttribute="bottom" id="0nu-xk-S1H"/>
+                <constraint firstItem="cW3-kW-eu1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="F3g-AO-Hja"/>
+                <constraint firstItem="rdt-jG-PiZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XvM-tf-Nax"/>
+                <constraint firstItem="rdt-jG-PiZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="b40-43-OeQ"/>
+                <constraint firstItem="cW3-kW-eu1" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dzg-XV-FNc"/>
+                <constraint firstItem="cW3-kW-eu1" firstAttribute="centerY" secondItem="rdt-jG-PiZ" secondAttribute="centerY" id="nTG-Wb-dOf"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>
