@@ -35,6 +35,8 @@ public class SlideshowController {
     
     fileprivate var timer = SlideshowTimer()
     
+    fileprivate var screenWatcher: ScreenWatcher?
+    
     public init(dataSource: SlideshowControllerDataSource, defaultImage image: UIImage?) {
         self.defaultImage = image
         
@@ -46,6 +48,8 @@ public class SlideshowController {
                 self.timer.go(withDelay: delay)
             }
         }
+        
+        self.screenWatcher = ScreenWatcher(notify: self)
     }
     
     public func changeTo(duration: TimeInterval) {
@@ -72,20 +76,29 @@ public class SlideshowController {
 
 extension SlideshowController {
     public func attach(toScreen screen: UIScreen) {
-        guard self.slideTransitionCoordinator.fullscreenViews[screen] == nil else {
-            return
+        // without a brief delay here, the screen image will "underscan" sometimes
+        // underscannig leaves a blank / black border at the edges of the screen
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+
+            guard self.slideTransitionCoordinator.fullscreenViews[screen] == nil else {
+                return
+            }
+            
+            screen.overscanCompensation = .none
+            
+            let window = UIWindow(frame: screen.bounds)
+            window.isHidden = false
+            let vc = SlideshowViewController(withBlankImage: self.defaultImage)
+            vc.window = window
+            window.rootViewController = vc
+            window.screen = screen
+            self.slideTransitionCoordinator.add(slideshowInView: window, forScreen: screen)
+            
+            self.unpause()
+            
+            self.delegate?.screenCount += 1
+            
         }
-        
-        screen.overscanCompensation = .none
-        let window = UIWindow(frame: screen.bounds)
-        window.isHidden = false
-        window.rootViewController = SlideshowViewController(withBlankImage: self.defaultImage)
-        window.screen = screen
-        self.slideTransitionCoordinator.add(slideshowInView: window, forScreen: screen)
-        
-        self.unpause()
-        
-        self.delegate?.screenCount += 1
     }
     
     public func detach(fromScreen screen: UIScreen) {
@@ -139,5 +152,34 @@ extension SlideshowController {
     public func detachAll() {
         self.slideTransitionCoordinator.removeAllSlideshows()
         self.delegate?.screenCount = 0
+    }
+}
+
+extension SlideshowController: ExternalScreenDelegateProtocol {
+    public func attachSlideshowController(toScreens screens: [UIScreen]) {
+        var screenIndex = 0
+        for screen in screens {
+            defer {
+                screenIndex += 1
+            }
+            
+            guard screenIndex > 0 else {
+                continue
+            }
+            
+            self.attachSlideshowController(toScreen: screen)
+        }
+    }
+    
+    public func detachSlideshowController() {
+        self.detachAll()
+    }
+    
+    public func attachSlideshowController(toScreen screen: UIScreen) {
+        self.attach(toScreen: screen)
+    }
+    
+    public func detachSlideshowController(fromScreen screen: UIScreen) {
+        self.detach(fromScreen: screen)
     }
 }

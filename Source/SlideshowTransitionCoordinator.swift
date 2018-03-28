@@ -35,7 +35,9 @@ class SlideshowTransitionCoordinator {
     
     func removeSlideshow(forView view: UIView) {
         if self.frameViews.contains(view) {
-            view.removeFromSuperview()
+            for view in view.subviews {
+                view.removeFromSuperview()
+            }
         }
         self.frameViews = self.frameViews.filter({ (eachView) -> Bool in
             eachView != view

@@ -9,7 +9,7 @@
 import UIKit
 
 class SlideshowViewController: UIViewController {
-    fileprivate(set) var window: UIView?
+    var window: UIView?
     fileprivate let slideshowView = UIImageView()
     
     convenience init(withBlankImage image: UIImage?) {
@@ -19,8 +19,11 @@ class SlideshowViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        self.view.backgroundColor = SlideshowController.slideBackgroundColor
+        
         slideshowView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(slideshowView)
+        
         NSLayoutConstraint.activate([
             NSLayoutConstraint(item: slideshowView, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: slideshowView, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0),
@@ -28,41 +31,34 @@ class SlideshowViewController: UIViewController {
             NSLayoutConstraint(item: slideshowView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0),
             ])
     }
-}
-
-extension SlideshowViewController {
-    func attach(toScreen screen: UIScreen) {
-        screen.overscanCompensation = .none
-        let window = UIWindow(frame: screen.bounds)
-        window.isHidden = false
-        window.rootViewController = self
-        window.screen = screen
-        self.window = window
-    }
     
-    func detach(fromScreen: UIScreen) {
-        self.window?.isHidden = true;
-        self.window = nil;
-    }
-    
-    func attach(toView: UIView) {
-        guard let ourView = self.view else {
-            return
-        }
-        self.window = ourView
-        ourView.translatesAutoresizingMaskIntoConstraints = false
-        toView.addSubview(ourView)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("viewDidLayoutSubviews")
         
-        NSLayoutConstraint.activate([
-            NSLayoutConstraint(item: ourView, attribute: .leading, relatedBy: .equal, toItem: toView, attribute: .leading, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: ourView, attribute: .trailing, relatedBy: .equal, toItem: toView, attribute: .trailing, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: ourView, attribute: .top, relatedBy: .equal, toItem: toView, attribute: .top, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: ourView, attribute: .bottom, relatedBy: .equal, toItem: toView, attribute: .bottom, multiplier: 1, constant: 0)
-            ])
+        print("bounds")
+        print(view.bounds)
+        
+        print("insets")
+        print((self.window as? UIWindow)?.screen.overscanCompensationInsets)
+        
+        print("modes")
+        print((self.window as? UIWindow)?.screen.availableModes)
+        
+        print("coordinateSpace")
+        print((self.window as? UIWindow)?.screen.coordinateSpace)
+        
+        print("fixedCoordinateSpace")
+        print((self.window as? UIWindow)?.screen.fixedCoordinateSpace)
     }
     
-    func deteach(fromView view: UIView) {
-        self.window?.isHidden = true
-        self.window = nil
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("viewDidAppear")
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        print("viewWillTransitionToSize")
     }
 }

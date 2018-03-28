@@ -12,10 +12,18 @@ class DemoViewController: UIViewController {
 
     @IBOutlet var previewLabel: UILabel?
     @IBOutlet var statusLabel: UILabel?
+    @IBOutlet var resetButton: UIButton?
     @IBOutlet var selectionLabel: UILabel?
     
     @IBOutlet var previewView: DemoPreviewView?
     @IBOutlet var tableView: UITableView?
+    
+    @objc func didTapReset(_ button: UIButton) {
+        button.isEnabled = false
+        (UIApplication.shared.delegate as? DemoAppDelegate)?.resetExternalScreens() {
+            button.isEnabled = true
+        }
+    }
     
     @objc func didTapStart() {
         self.previewView?.startButton?.isHidden = true
@@ -50,6 +58,7 @@ class DemoViewController: UIViewController {
         
         previewLabel?.text = "Slideshow preview:"
         statusLabel?.text = "Slideshow is not playing"
+        resetButton?.setTitle("Reset external displays", for: .normal)
         self.updateSelectionLabel()
         
         if let tableView = tableView {
@@ -70,6 +79,7 @@ class DemoViewController: UIViewController {
         }
         
         previewView?.startButton?.addTarget(self, action: #selector(didTapStart), for: .touchUpInside)
+        resetButton?.addTarget(self, action: #selector(didTapReset), for: .touchUpInside)
     }
     
     override func viewDidAppear(_ animated: Bool) {

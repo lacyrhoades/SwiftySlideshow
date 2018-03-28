@@ -16,15 +16,13 @@ class DemoAppDelegate: UIResponder, UIApplicationDelegate {
     // Controls the slides
     var slideshowController: SlideshowController?
     
-    // Watches for screens as they attach / detach
-    var screenWatcher: ScreenWatcher?
-    
     var mainVC: DemoViewController? {
         return (self.window?.rootViewController as? DemoViewController)
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        // Will fetch data for slideshow from the Photo Library
         let slideshowDataSource = DemoDataSource()
         
         self.slideshowController = SlideshowController(
@@ -32,50 +30,26 @@ class DemoAppDelegate: UIResponder, UIApplicationDelegate {
             defaultImage: UIImage(named: "default-slide")
         )
         
+        // Optional, to show the screen info on the main VC
         self.slideshowController?.delegate = self.mainVC
         
-        self.screenWatcher = ScreenWatcher(notify: self)
-        
+        // To feed the table view with data
         self.mainVC?.slideshowDataSource = slideshowDataSource
         
         return true
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        self.attachSlideshowController(toScreens: UIScreen.screens)
+        self.slideshowController?.attachSlideshowController(toScreens: UIScreen.screens)
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        self.detachSlideshowController()
+        self.slideshowController?.detachSlideshowController()
+    }
+    
+    func resetExternalScreens(_ andThen: @escaping () -> ()) {
+        self.slideshowController?.detachSlideshowController()
+        self.slideshowController?.attachSlideshowController(toScreens: UIScreen.screens)
+        andThen()
     }
 }
-
-extension DemoAppDelegate: ExternalScreenDelegateProtocol {
-    func attachSlideshowController(toScreens screens: [UIScreen]) {
-        var screenIndex = 0
-        for screen in screens {
-            defer {
-                screenIndex += 1
-            }
-            
-            guard screenIndex > 0 else {
-                continue
-            }
-            
-            self.attachSlideshowController(toScreen: screen)
-        }
-    }
-    
-    func detachSlideshowController() {
-        self.slideshowController?.detachAll()
-    }
-    
-    func attachSlideshowController(toScreen screen: UIScreen) {
-        self.slideshowController?.attach(toScreen: screen)
-    }
-    
-    func detachSlideshowController(fromScreen screen: UIScreen) {
-        self.slideshowController?.detach(fromScreen: screen)
-    }
-}
-

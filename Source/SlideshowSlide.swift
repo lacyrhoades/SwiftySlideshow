@@ -25,17 +25,16 @@ struct SlideshowSlide {
     
     func prepareToAppear() {
         self.waitGroup.enter()
+        
         self.item.fetchMediaDatas?() {
             datas in
-            
-            defer {
-                self.waitGroup.leave()
-            }
             
             guard let data = datas.first else {
                 DispatchQueue.main.async {
                     self.imageView.backgroundColor = .clear
                 }
+                
+                self.waitGroup.leave()
                 return
             }
             
@@ -47,6 +46,8 @@ struct SlideshowSlide {
             } else if let videoView = self.imageView as? WebVideoView {
                 videoView.playFrom(data: data)
             }
+            
+            self.waitGroup.leave()
         }
     }
     
@@ -57,7 +58,7 @@ struct SlideshowSlide {
         case .success:
             break
         case .timedOut:
-            assert(false, "startPlaying() did time out")
+            assert(false, "startPlaying() did time out!")
         }
         
         if let videoView = self.imageView as? WebVideoView {

@@ -22,41 +22,48 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="vCY-r0-S67">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQS-QY-Skl" userLabel="Space">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="52"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoY-TZ-2EA">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="26"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6X-kO-Op4" userLabel="Preview Label">
-                                        <rect key="frame" x="0.0" y="52" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="26" width="375" height="26"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pco-Fz-Sws" customClass="DemoPreviewView" customModule="SwiftySlideshow" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="52" width="375" height="133.5"/>
+                                        <rect key="frame" x="0.0" y="52" width="375" height="134"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UtV-9z-UJn" userLabel="Slideshow Status Label">
-                                        <rect key="frame" x="0.0" y="185.5" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="186" width="375" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eie-jz-32Q">
+                                        <rect key="frame" x="0.0" y="186" width="375" height="0.0"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aRs-5q-Qgh">
-                                        <rect key="frame" x="0.0" y="185.5" width="375" height="333.5"/>
+                                        <rect key="frame" x="0.0" y="186" width="375" height="334"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1E-OX-T5q" userLabel="Selection Label">
-                                        <rect key="frame" x="0.0" y="519" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="520" width="375" height="0.0"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2O2-ca-aTe" userLabel="Space">
-                                        <rect key="frame" x="0.0" y="519" width="375" height="128"/>
+                                        <rect key="frame" x="0.0" y="520" width="375" height="127"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Q6X-kO-Op4" firstAttribute="height" secondItem="zoY-TZ-2EA" secondAttribute="height" id="i5m-tp-ryv"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.9692982416881667" blue="0.91445806765431037" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -73,6 +80,7 @@
                     <connections>
                         <outlet property="previewLabel" destination="Q6X-kO-Op4" id="NGI-ku-UF9"/>
                         <outlet property="previewView" destination="Pco-Fz-Sws" id="nPb-KF-WJx"/>
+                        <outlet property="resetButton" destination="eie-jz-32Q" id="Xys-aK-RPN"/>
                         <outlet property="selectionLabel" destination="S1E-OX-T5q" id="vHj-gK-uqO"/>
                         <outlet property="statusLabel" destination="UtV-9z-UJn" id="DtO-Hq-mRT"/>
                         <outlet property="tableView" destination="aRs-5q-Qgh" id="Nxu-br-SAV"/>
