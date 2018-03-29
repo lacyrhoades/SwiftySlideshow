@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class WebVideoView: UIView {
+public class WebVideoView: UIView {
     var player: AVQueuePlayer?
     var playerLooper: AVPlayerLooper?
     var playerLayer: AVPlayerLayer?
@@ -29,7 +29,7 @@ class WebVideoView: UIView {
         self.player?.removeObserver(self, forKeyPath: "status", context: &observerContext)
     }
     
-    func playFrom(data: Data) {
+    public func playFrom(data: Data) {
         let tempPath = NSTemporaryDirectory().appending(
             String(format: "%d.mov", data.hashValue)
         )
@@ -92,13 +92,13 @@ class WebVideoView: UIView {
         }
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         self.playerLayer?.frame = self.bounds
     }
     
     var wantsToPlay: Bool = false
-    func play() {
+    public func play() {
         self.wantsToPlay = true
         
         guard let player = player else {
@@ -115,7 +115,7 @@ class WebVideoView: UIView {
         }
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    public override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         guard context == &observerContext else {
             super.observeValue(forKeyPath: keyPath, of: object, change: change, context: context)
             return

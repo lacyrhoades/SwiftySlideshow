@@ -39,14 +39,6 @@ class DemoAppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        self.slideshowController?.attachSlideshowController(toScreens: UIScreen.screens)
-    }
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        self.slideshowController?.detachSlideshowController()
-    }
-    
     func resetExternalScreens(_ andThen: @escaping () -> ()) {
         self.slideshowController?.detachSlideshowController()
         self.slideshowController?.attachSlideshowController(toScreens: UIScreen.screens)
