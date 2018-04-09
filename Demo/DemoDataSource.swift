@@ -14,7 +14,7 @@ class DemoDataSource: SlideshowControllerDataSource {
     
     public func setAssetIDs(_ newValue: [String]) {
         self.assetIDs = newValue.map({ (eachID) -> AssetID in
-            return AssetID(rawValue: eachID)
+            return AssetID(eachID)
         })
     }
     
@@ -23,19 +23,19 @@ class DemoDataSource: SlideshowControllerDataSource {
     }
     
     func slideshowItemID(afterID: SlideshowItemID) -> SlideshowItemID? {
-        let assetID = AssetID(rawValue: afterID.rawValue)
+        let assetID = AssetID(afterID.string)
         
-        if let next = self.assetIDs.after(assetID)?.rawValue {
-            return SlideshowItemID(rawValue: next)
+        if let next = self.assetIDs.after(assetID)?.string {
+            return SlideshowItemID(next)
         }
         
-        return SlideshowItemID(rawValue: self.assetIDs.first?.rawValue)
+        return SlideshowItemID(self.assetIDs.first?.string)
     }
     
     func slideshowItem(afterID: SlideshowItemID?) -> SlideshowItem? {
         
         // The asset the slideshow has now
-        let maybeAssetID = AssetID(rawValue: afterID?.rawValue)
+        let maybeAssetID = AssetID(afterID?.string)
         
         // The next asset in our list
         var nextAssetID: AssetID?
@@ -69,7 +69,7 @@ class DemoDataSource: SlideshowControllerDataSource {
         }
         
         // Build and return the item
-        let id = SlideshowItemID(rawValue: someAssetID.rawValue)
+        let id = SlideshowItemID(someAssetID.string)
         return SlideshowItem(id: id, type: type, fetch: { (done) in
             AssetFetcher.slideshowItemData(forAsset: asset, withItemType: type) {
                 datas in

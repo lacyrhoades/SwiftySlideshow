@@ -34,6 +34,7 @@
 		0F4EB4371FD9FD2300F29E83 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4EB4361FD9FD2300F29E83 /* Array+Utils.swift */; };
 		0F4EB4391FD9FD3300F29E83 /* AssetFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4EB4381FD9FD3300F29E83 /* AssetFetcher.swift */; };
 		0FE3D504207BB7F7005A8D6D /* AssetID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE3D503207BB7F7005A8D6D /* AssetID.swift */; };
+		0FE3D506207BEE1F005A8D6D /* SlideshowItemID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE3D505207BEE1F005A8D6D /* SlideshowItemID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +79,7 @@
 		0F4EB4361FD9FD2300F29E83 /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		0F4EB4381FD9FD3300F29E83 /* AssetFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetFetcher.swift; sourceTree = "<group>"; };
 		0FE3D503207BB7F7005A8D6D /* AssetID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetID.swift; sourceTree = "<group>"; };
+		0FE3D505207BEE1F005A8D6D /* SlideshowItemID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideshowItemID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				0F4EB4361FD9FD2300F29E83 /* Array+Utils.swift */,
 				0F4EB4381FD9FD3300F29E83 /* AssetFetcher.swift */,
 				0FE3D503207BB7F7005A8D6D /* AssetID.swift */,
+				0FE3D505207BEE1F005A8D6D /* SlideshowItemID.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				0F4249921FD9D4C600D8291F /* DemoTableViewBackend.swift in Sources */,
 				0F3A6BA51FBF867D00B696F2 /* SlideshowController.swift in Sources */,
 				0F4249901FD9CFD100D8291F /* NibView.swift in Sources */,
+				0FE3D506207BEE1F005A8D6D /* SlideshowItemID.swift in Sources */,
 				0F3A6BAB1FBF9AC600B696F2 /* SlideshowTransitionCoordinator.swift in Sources */,
 				0F3A6B831FBF827700B696F2 /* DemoAppDelegate.swift in Sources */,
 				0F3A6BAF1FBF9B0300B696F2 /* ActionBlock.swift in Sources */,

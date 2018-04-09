@@ -9,21 +9,25 @@
 import Foundation
 
 struct AssetID: Hashable {
-    var rawValue: String
+    private let rawValue: String
+    
+    var string: String {
+        return self.rawValue
+    }
     
     var hashValue: Int {
         return self.rawValue.hashValue
     }
     
-    init(rawValue: String) {
+    init(_ rawValue: String) {
         self.rawValue = rawValue
     }
     
-    init?(rawValue: String?) {
+    init?(_ rawValue: String?) {
         guard let val = rawValue else {
             return nil
         }
         
-        self.init(rawValue: val)
+        self.init(val)
     }
 }

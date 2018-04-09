@@ -12,34 +12,6 @@ public protocol SlideshowControllerDelegate: class {
     var screenCount: Int { get set }
 }
 
-public struct SlideshowItemID: Hashable, Equatable, CustomStringConvertible {
-    let rawValue: String
-    
-    init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-    
-    init?(rawValue: String?) {
-        guard let val = rawValue else {
-            return nil
-        }
-        
-        self.init(rawValue: val)
-    }
-    
-    public static func == (lhs: SlideshowItemID, rhs: SlideshowItemID) -> Bool {
-        return lhs.rawValue == rhs.rawValue
-    }
-    
-    public var description: String {
-        return self.rawValue
-    }
-    
-    public var hashValue: Int {
-        return self.rawValue.hashValue
-    }
-}
-
 public protocol SlideshowControllerDataSource: class {
     var isEmpty: Bool {get}
     func slideshowItemID(afterID: SlideshowItemID) -> SlideshowItemID?
