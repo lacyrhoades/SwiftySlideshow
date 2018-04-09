@@ -9,26 +9,6 @@
 import Foundation
 import Photos
 
-struct AssetID: Hashable {
-    var rawValue: String
-    
-    var hashValue: Int {
-        return self.rawValue.hashValue
-    }
-    
-    init(rawValue: String) {
-        self.rawValue = rawValue
-    }
-    
-    init?(rawValue: String?) {
-        guard let val = rawValue else {
-            return nil
-        }
-        
-        self.init(rawValue: val)
-    }
-}
-
 class DemoDataSource: SlideshowControllerDataSource {
     private var assetIDs: [AssetID] = []
     

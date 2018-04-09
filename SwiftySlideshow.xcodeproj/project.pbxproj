@@ -33,6 +33,7 @@
 		0F4EB4351FD9F9DA00F29E83 /* SlideshowItem+Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4EB4341FD9F9DA00F29E83 /* SlideshowItem+Photos.swift */; };
 		0F4EB4371FD9FD2300F29E83 /* Array+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4EB4361FD9FD2300F29E83 /* Array+Utils.swift */; };
 		0F4EB4391FD9FD3300F29E83 /* AssetFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F4EB4381FD9FD3300F29E83 /* AssetFetcher.swift */; };
+		0FE3D504207BB7F7005A8D6D /* AssetID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE3D503207BB7F7005A8D6D /* AssetID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		0F4EB4341FD9F9DA00F29E83 /* SlideshowItem+Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SlideshowItem+Photos.swift"; sourceTree = "<group>"; };
 		0F4EB4361FD9FD2300F29E83 /* Array+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Utils.swift"; sourceTree = "<group>"; };
 		0F4EB4381FD9FD3300F29E83 /* AssetFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetFetcher.swift; sourceTree = "<group>"; };
+		0FE3D503207BB7F7005A8D6D /* AssetID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 				0F4EB4341FD9F9DA00F29E83 /* SlideshowItem+Photos.swift */,
 				0F4EB4361FD9FD2300F29E83 /* Array+Utils.swift */,
 				0F4EB4381FD9FD3300F29E83 /* AssetFetcher.swift */,
+				0FE3D503207BB7F7005A8D6D /* AssetID.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				0F3A6BA71FBF874100B696F2 /* DemoDataSource.swift in Sources */,
 				0F3A6BB31FBF9C4700B696F2 /* SlideshowViewController.swift in Sources */,
 				0F3A6BA91FBF878200B696F2 /* SlideshowItem.swift in Sources */,
+				0FE3D504207BB7F7005A8D6D /* AssetID.swift in Sources */,
 				0F3A6BB11FBF9B3600B696F2 /* SlideshowSlide.swift in Sources */,
 				0F4EB4391FD9FD3300F29E83 /* AssetFetcher.swift in Sources */,
 				0F3A6BAD1FBF9AEC00B696F2 /* SlideshowTimer.swift in Sources */,
