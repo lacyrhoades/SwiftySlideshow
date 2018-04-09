@@ -9,10 +9,16 @@
 import UIKit
 import AVFoundation
 
+public typealias OnPlayBlock = () -> ()
+
 public class WebVideoView: UIView {
     var player: AVQueuePlayer?
     var playerLooper: AVPlayerLooper?
     var playerLayer: AVPlayerLayer?
+    
+    public var naturalSize: CGSize? {
+        return self.player?.currentItem?.asset.tracks(withMediaType: AVMediaType.video).first?.naturalSize
+    }
     
     private static let dataParseQueue = DispatchQueue.global(qos: .utility)
 
@@ -98,16 +104,22 @@ public class WebVideoView: UIView {
     }
     
     var wantsToPlay: Bool = false
-    public func play() {
+    var onPlay: ActionBlock? = nil
+    public func play(andThen: OnPlayBlock? = nil) {
         self.wantsToPlay = true
         
         guard let player = player else {
+            if andThen != nil {
+                onPlay = andThen
+            }
             return
         }
         
         switch player.status {
         case .readyToPlay:
             player.play()
+            onPlay?()
+            onPlay = nil
         case .failed:
             return
         case.unknown:

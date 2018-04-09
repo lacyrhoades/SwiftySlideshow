@@ -10,8 +10,8 @@ import Photos
 import AVFoundation
 
 class AssetFetcher {
-    public static func asset(forAssetID assetID: String) -> PHAsset? {
-        return PHAsset.fetchAssets(withLocalIdentifiers: [assetID], options: nil).firstObject
+    public static func asset(forAssetID assetID: AssetID) -> PHAsset? {
+        return PHAsset.fetchAssets(withLocalIdentifiers: [assetID.rawValue], options: nil).firstObject
     }
     
     public static func slideshowItemData(forAsset asset: PHAsset, withItemType itemType: SlideshowItemType, andThen: @escaping SlideshowItemLoadCompletionBlock) {

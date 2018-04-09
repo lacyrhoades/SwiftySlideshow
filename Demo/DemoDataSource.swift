@@ -9,44 +9,88 @@
 import Foundation
 import Photos
 
+struct AssetID: Hashable {
+    var rawValue: String
+    
+    var hashValue: Int {
+        return self.rawValue.hashValue
+    }
+    
+    init(rawValue: String) {
+        self.rawValue = rawValue
+    }
+    
+    init?(rawValue: String?) {
+        guard let val = rawValue else {
+            return nil
+        }
+        
+        self.init(rawValue: val)
+    }
+}
+
 class DemoDataSource: SlideshowControllerDataSource {
-    var assetIDs: [String] = []
+    private var assetIDs: [AssetID] = []
+    
+    public func setAssetIDs(_ newValue: [String]) {
+        self.assetIDs = newValue.map({ (eachID) -> AssetID in
+            return AssetID(rawValue: eachID)
+        })
+    }
     
     var isEmpty: Bool {
         return self.assetIDs.isEmpty
     }
     
-    func slideshowItemID(afterID: String) -> String? {
-        if let id = self.assetIDs.after(afterID) {
-            return id
+    func slideshowItemID(afterID: SlideshowItemID) -> SlideshowItemID? {
+        let assetID = AssetID(rawValue: afterID.rawValue)
+        
+        if let next = self.assetIDs.after(assetID)?.rawValue {
+            return SlideshowItemID(rawValue: next)
         }
         
-        return self.assetIDs.first
+        return SlideshowItemID(rawValue: self.assetIDs.first?.rawValue)
     }
     
-    func slideshowItem(afterID: String?) -> SlideshowItem? {
-        var maybeID: String? = nil
+    func slideshowItem(afterID: SlideshowItemID?) -> SlideshowItem? {
         
-        if let afterID = afterID {
-            maybeID = self.slideshowItemID(afterID: afterID)
-        } else {
-            maybeID = self.assetIDs.first
+        // The asset the slideshow has now
+        let maybeAssetID = AssetID(rawValue: afterID?.rawValue)
+        
+        // The next asset in our list
+        var nextAssetID: AssetID?
+        
+        // If the slideshow asked for an asset
+        if let assetID = maybeAssetID {
+            // look for next
+           nextAssetID = self.assetIDs.after(assetID)
         }
         
-        guard let nextID = maybeID else {
+        // If we found nothing
+        if nextAssetID == nil {
+            // go with first
+            nextAssetID = self.assetIDs.first
+        }
+        
+        // Did we find anything at all?
+        guard let someAssetID = nextAssetID else {
             return nil
         }
         
-        guard let asset: PHAsset = AssetFetcher.asset(forAssetID: nextID) else {
+        // Can the AssetFetcher provide this data?
+        guard let asset: PHAsset = AssetFetcher.asset(forAssetID: someAssetID) else {
             return nil
         }
         
+        // Recognized type?
         guard let type = SlideshowItem.type(forMediaType: asset.mediaType) else {
             assert(false, "Invalid PHAsset mediaType! Only image and video are supported for slideshow :)")
             return nil
         }
         
-        return SlideshowItem(id: nextID, type: type, fetch: { (done) in
+        // Build and return the item
+        let id = SlideshowItemID(rawValue: someAssetID.rawValue)
+        return SlideshowItem(id: id, type: type, fetch: { (done) in
             AssetFetcher.slideshowItemData(forAsset: asset, withItemType: type) {
                 datas in
                 

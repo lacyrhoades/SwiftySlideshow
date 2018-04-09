@@ -40,9 +40,9 @@ class DemoTableViewBackend: NSObject {
     
     var selected: Set<IndexPath> = Set()
     var selectedAssetIDs: [String] {
-        return selected.flatMap({ (eachIndex) -> String? in
+        return selected.sorted().reversed().compactMap({ (eachIndex) -> String? in
             return self.assetID(at: eachIndex)
-        }).sorted()
+        })
     }
 }
 

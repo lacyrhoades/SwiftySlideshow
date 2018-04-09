@@ -17,11 +17,11 @@ public enum SlideshowItemType {
 }
 
 public struct SlideshowItem {
-    var id: String
+    var id: SlideshowItemID
     var type: SlideshowItemType
     var fetchMediaDatas: MediaFetchBlock? = nil
     
-    public init(id: String, type: SlideshowItemType, fetch: @escaping MediaFetchBlock) {
+    public init(id: SlideshowItemID, type: SlideshowItemType, fetch: @escaping MediaFetchBlock) {
         self.id = id
         self.type = type
         self.fetchMediaDatas = fetch

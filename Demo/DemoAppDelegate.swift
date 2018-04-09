@@ -36,6 +36,10 @@ class DemoAppDelegate: UIResponder, UIApplicationDelegate {
         // To feed the table view with data
         self.mainVC?.slideshowDataSource = slideshowDataSource
         
+        #if DEBUG
+        SlideshowController.defaultSlideDuration = 1.0
+        #endif
+        
         return true
     }
     

@@ -75,7 +75,7 @@ class DemoViewController: UIViewController {
         
         backend.selectedChanged = {
             self.updateSelectionLabel()
-            self.slideshowDataSource?.assetIDs = self.backend.selectedAssetIDs
+            self.slideshowDataSource?.setAssetIDs(self.backend.selectedAssetIDs)
         }
         
         previewView?.startButton?.addTarget(self, action: #selector(didTapStart), for: .touchUpInside)

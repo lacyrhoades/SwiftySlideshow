@@ -146,7 +146,7 @@ class SlideshowTransitionCoordinator {
         return self.currentSlides.first?.transitionDuration ?? SlideshowController.defaultTransitionDuration
     }
     
-    private func makeNextSlides(afterID current: String?) -> [SlideshowSlide] {
+    private func makeNextSlides(afterID current: SlideshowItemID?) -> [SlideshowSlide] {
         guard self.slideshowDataSource.isEmpty == false else {
             return []
         }
