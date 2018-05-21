@@ -8,8 +8,24 @@
 
 import UIKit
 
+public struct ExternalScreen {
+    public var description: String
+    
+    init(_ screen: UIScreen) {
+        let size = screen.currentMode?.size ?? .zero
+        self.description = String(format: "AirPlay: %.0fx%.0f", size.width, size.height)
+    }
+    
+    init(_ view: UIView) {
+        self.description = String(format: "Preview Screen")
+    }
+}
+
 public protocol SlideshowControllerDelegate: class {
     var screenCount: Int { get set }
+    func addedScreen(_ screen: ExternalScreen)
+    func removedScreen(_ screen: ExternalScreen)
+    func removedAllScreens()
 }
 
 public protocol SlideshowControllerDataSource: class {
@@ -27,7 +43,7 @@ public class SlideshowController {
         return self.slideTransitionCoordinator.slideshowDataSource
     }
     
-    var delegate: SlideshowControllerDelegate?
+    weak public var delegate: SlideshowControllerDelegate?
     
     fileprivate var slideTransitionCoordinator: SlideshowTransitionCoordinator
     
@@ -97,6 +113,7 @@ extension SlideshowController {
             self.unpause()
             
             self.delegate?.screenCount += 1
+            self.delegate?.addedScreen(ExternalScreen(screen))
             
         }
     }
@@ -109,6 +126,7 @@ extension SlideshowController {
         self.slideTransitionCoordinator.removeSlidehow(forScreen: screen)
         
         self.delegate?.screenCount -= 1
+        self.delegate?.removedScreen(ExternalScreen(screen))
     }
     
     public func isAttached(toView view: UIView) -> Bool {
@@ -138,6 +156,7 @@ extension SlideshowController {
         self.unpause()
         
         self.delegate?.screenCount += 1
+        self.delegate?.addedScreen(ExternalScreen(view))
     }
     
     public func detach(fromView view: UIView) {
@@ -147,11 +166,13 @@ extension SlideshowController {
         
         self.slideTransitionCoordinator.removeSlideshow(forView: view)
         self.delegate?.screenCount -= 1
+        self.delegate?.removedScreen(ExternalScreen(view))
     }
     
     public func detachAll() {
         self.slideTransitionCoordinator.removeAllSlideshows()
         self.delegate?.screenCount = 0
+        self.delegate?.removedAllScreens()
     }
 }
 

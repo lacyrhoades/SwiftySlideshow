@@ -32,26 +32,6 @@ class SlideshowViewController: UIViewController {
             ])
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        print("viewDidLayoutSubviews")
-        
-        print("bounds")
-        print(view.bounds)
-        
-        print("insets")
-        print((self.window as? UIWindow)?.screen.overscanCompensationInsets)
-        
-        print("modes")
-        print((self.window as? UIWindow)?.screen.availableModes)
-        
-        print("coordinateSpace")
-        print((self.window as? UIWindow)?.screen.coordinateSpace)
-        
-        print("fixedCoordinateSpace")
-        print((self.window as? UIWindow)?.screen.fixedCoordinateSpace)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         print("viewDidAppear")
