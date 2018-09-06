@@ -9,3 +9,4 @@
 import Foundation
 
 typealias ActionBlock = () -> ()
+typealias SequentialBlock = (_ andThen: ActionBlock?) -> ()
