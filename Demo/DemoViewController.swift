@@ -102,5 +102,17 @@ extension DemoViewController: SlideshowControllerDelegate {
             return self.numberOfScreens
         }
     }
+    
+    func addedScreen(_ screen: ExternalScreen) {
+        
+    }
+    
+    func removedScreen(_ screen: ExternalScreen) {
+        
+    }
+    
+    func removedAllScreens() {
+        
+    }
 }
 
