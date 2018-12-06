@@ -79,7 +79,7 @@ public class WebVideoView: UIView {
         let playerLayer = AVPlayerLayer(player: player)
         playerLayer.videoGravity = .resizeAspect
         self.playerLayer = playerLayer
-        player.seek(to: kCMTimeZero)
+        player.seek(to: .zero)
         playerLayer.frame = self.layer.bounds
         self.layer.insertSublayer(playerLayer, at: 0)
         player.actionAtItemEnd = .none
@@ -94,7 +94,7 @@ public class WebVideoView: UIView {
     
     @objc func playerItemDidReachEnd(notification: Notification) {
         if let playerItem: AVPlayerItem = notification.object as? AVPlayerItem {
-            playerItem.seek(to: kCMTimeZero)
+            playerItem.seek(to: .zero)
         }
     }
     
@@ -134,7 +134,7 @@ public class WebVideoView: UIView {
         }
         
         if (wantsToPlay && keyPath == "status") {
-            if let newValue = change![.newKey] as? Int, AVPlayerStatus(rawValue: newValue) == AVPlayerStatus.readyToPlay {
+            if let newValue = change![.newKey] as? Int, AVPlayer.Status(rawValue: newValue) == AVPlayer.Status.readyToPlay {
                 self.play()
             }
         }

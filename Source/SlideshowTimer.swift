@@ -36,7 +36,7 @@ class SlideshowTimer {
             self.fireBlock?()
         })
         self.timer = timer
-        self.timerLoop.add(timer, forMode: .commonModes)
+        self.timerLoop.add(timer, forMode: .common)
     }
     
 }

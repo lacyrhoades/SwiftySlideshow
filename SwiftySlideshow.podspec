@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "SwiftySlideshow"
-  s.version          = "0.9"
+  s.version          = "1.0"
   s.summary          = "Tools for connecting external display to iPad / iPhone and displaying arbitrary content via HDMI / AirPlay"
   s.homepage         = "https://github.com/lacyrhoades/SwiftySlideshow"
   s.license          = { type: 'MIT', file: 'LICENSE' }

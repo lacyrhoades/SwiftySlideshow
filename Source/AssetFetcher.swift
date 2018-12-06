@@ -65,7 +65,7 @@ class AssetFetcher {
             exportSession.outputFileType = .mov
             
             exportSession.exportAsynchronously {
-                if exportSession.status == AVAssetExportSessionStatus.completed {
+                if exportSession.status == .completed {
                     do {
                         let data = try Data(contentsOf: tempFileURL)
                         andThen([data])

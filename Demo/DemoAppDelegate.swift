@@ -20,7 +20,7 @@ class DemoAppDelegate: UIResponder, UIApplicationDelegate {
         return (self.window?.rootViewController as? DemoViewController)
     }
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // Will fetch data for slideshow from the Photo Library
         let slideshowDataSource = DemoDataSource()

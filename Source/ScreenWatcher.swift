@@ -14,8 +14,8 @@ public class ScreenWatcher {
     public init(notify: ExternalScreenDelegateProtocol) {
         self.delegate = notify
 
-        NotificationCenter.default.addObserver(self, selector: #selector(screenConnected), name: .UIScreenDidConnect, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(screenDisconnected), name: .UIScreenDidDisconnect, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(screenConnected), name: UIScreen.didConnectNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(screenDisconnected), name: UIScreen.didDisconnectNotification, object: nil)
     }
     
     deinit {

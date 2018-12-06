@@ -11,7 +11,7 @@ import UIKit
 class AssetCell: UITableViewCell {
     static let identifier: String = "AssetCell"
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.imageView?.contentMode = .scaleAspectFit
     }

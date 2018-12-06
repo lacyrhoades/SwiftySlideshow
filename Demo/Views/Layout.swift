@@ -25,7 +25,7 @@ extension UIView {
 }
 
 struct Layout {
-    static func doNotCompress(_ view: UIView, onAxis axis: UILayoutConstraintAxis) {
+    static func doNotCompress(_ view: UIView, onAxis axis: NSLayoutConstraint.Axis) {
         view.setContentCompressionResistancePriority(.required, for: axis)
     }
     
