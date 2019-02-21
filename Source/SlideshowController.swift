@@ -35,9 +35,39 @@ public protocol SlideshowControllerDataSource: class {
 }
 
 public class SlideshowController {
+    public enum Orientation: String, Codable, CustomStringConvertible {
+        case normal
+        case upsideDown
+        case left
+        case right
+        
+        public var description: String {
+            switch self {
+            case .normal:
+                return "Normal"
+            case .upsideDown:
+                return "Rotate 180°"
+            case .right:
+                return "Rotate 90° CW"
+            case .left:
+                return "Rotate 90° CCW"
+            }
+        }
+    }
+    
     public static var defaultSlideDuration: TimeInterval = 10.0
     public static var defaultTransitionDuration: TimeInterval = 1.0
     public static var slideBackgroundColor: UIColor = .white
+    
+    public var rotation = Orientation.normal {
+        didSet {
+            for window in UIApplication.shared.windows {
+                if let slideshowVC = window.rootViewController as? SlideshowViewController {
+                    slideshowVC.wrapperView.rotation = rotation
+                }
+            }
+        }
+    }
     
     public var dataSource: SlideshowControllerDataSource {
         return self.slideTransitionCoordinator.slideshowDataSource
@@ -105,10 +135,12 @@ extension SlideshowController {
             let window = UIWindow(frame: screen.bounds)
             window.isHidden = false
             let vc = SlideshowViewController(withBlankImage: self.defaultImage)
+            vc.wrapperView.rotation = self.rotation
             vc.window = window
             window.rootViewController = vc
             window.screen = screen
-            self.slideTransitionCoordinator.add(slideshowInView: window, forScreen: screen)
+            
+            self.slideTransitionCoordinator.add(slideshowInView: vc.slideshowView, forScreen: screen)
             
             self.unpause()
             

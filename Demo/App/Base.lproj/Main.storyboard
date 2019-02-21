@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,41 +22,45 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoY-TZ-2EA">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="26"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="20.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6X-kO-Op4" userLabel="Preview Label">
-                                        <rect key="frame" x="0.0" y="26" width="375" height="26"/>
+                                        <rect key="frame" x="0.0" y="20.5" width="375" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pco-Fz-Sws" customClass="DemoPreviewView" customModule="SwiftySlideshow" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="52" width="375" height="134"/>
+                                        <rect key="frame" x="0.0" y="41" width="375" height="133.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UtV-9z-UJn" userLabel="Slideshow Status Label">
-                                        <rect key="frame" x="0.0" y="186" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="174.5" width="375" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FEc-kY-lT8">
+                                        <rect key="frame" x="0.0" y="195" width="375" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eie-jz-32Q">
-                                        <rect key="frame" x="0.0" y="186" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="225" width="375" height="30"/>
                                         <state key="normal" title="Button"/>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aRs-5q-Qgh">
-                                        <rect key="frame" x="0.0" y="186" width="375" height="334"/>
+                                        <rect key="frame" x="0.0" y="255" width="375" height="333.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1E-OX-T5q" userLabel="Selection Label">
-                                        <rect key="frame" x="0.0" y="520" width="375" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="588.5" width="375" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2O2-ca-aTe" userLabel="Space">
-                                        <rect key="frame" x="0.0" y="520" width="375" height="127"/>
+                                        <rect key="frame" x="0.0" y="609" width="375" height="38"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -81,6 +84,7 @@
                         <outlet property="previewLabel" destination="Q6X-kO-Op4" id="NGI-ku-UF9"/>
                         <outlet property="previewView" destination="Pco-Fz-Sws" id="nPb-KF-WJx"/>
                         <outlet property="resetButton" destination="eie-jz-32Q" id="Xys-aK-RPN"/>
+                        <outlet property="rotateButton" destination="FEc-kY-lT8" id="8cB-mr-g8o"/>
                         <outlet property="selectionLabel" destination="S1E-OX-T5q" id="vHj-gK-uqO"/>
                         <outlet property="statusLabel" destination="UtV-9z-UJn" id="DtO-Hq-mRT"/>
                         <outlet property="tableView" destination="aRs-5q-Qgh" id="Nxu-br-SAV"/>

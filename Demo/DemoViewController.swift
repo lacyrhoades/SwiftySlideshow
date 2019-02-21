@@ -12,11 +12,33 @@ class DemoViewController: UIViewController {
 
     @IBOutlet var previewLabel: UILabel?
     @IBOutlet var statusLabel: UILabel?
+    @IBOutlet var rotateButton: UIButton?
     @IBOutlet var resetButton: UIButton?
     @IBOutlet var selectionLabel: UILabel?
     
     @IBOutlet var previewView: DemoPreviewView?
     @IBOutlet var tableView: UITableView?
+    
+    var rotation: UIInterfaceOrientation = .portrait
+    
+    @objc func didTapRotate(_ button: UIButton) {
+        switch rotation {
+        case .portrait:
+            rotation = .landscapeRight
+        case .landscapeRight:
+            rotation = .portraitUpsideDown
+        case .portraitUpsideDown:
+            rotation = .landscapeLeft
+        case .landscapeLeft:
+            rotation = .portrait
+        case .unknown:
+            rotation = .portrait
+        }
+        
+        rotateButton?.setTitle(self.rotateButtonTitle, for: .normal)
+        
+        (UIApplication.shared.delegate as? DemoAppDelegate)?.slideshowController?.rotation = rotation
+    }
     
     @objc func didTapReset(_ button: UIButton) {
         button.isEnabled = false
@@ -79,7 +101,27 @@ class DemoViewController: UIViewController {
         }
         
         previewView?.startButton?.addTarget(self, action: #selector(didTapStart), for: .touchUpInside)
+        
+        rotateButton?.addTarget(self, action: #selector(didTapRotate), for: .touchUpInside)
+        
+        rotateButton?.setTitle(self.rotateButtonTitle, for: .normal)
+        
         resetButton?.addTarget(self, action: #selector(didTapReset), for: .touchUpInside)
+    }
+    
+    var rotateButtonTitle: String {
+        switch rotation {
+        case .portrait:
+            return "No rotation"
+        case .portraitUpsideDown:
+            return "Rotated 180 degrees"
+        case .landscapeRight:
+            return "Rotated 90 degrees CW"
+        case .landscapeLeft:
+            return "Rotated 90 degrees CCW"
+        case .unknown:
+            return "Rotation unknown"
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
