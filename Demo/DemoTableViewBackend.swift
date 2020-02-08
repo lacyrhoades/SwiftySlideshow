@@ -6,6 +6,7 @@
 //  Copyright © 2017 Lacy Rhoades. All rights reserved.
 //
 
+import UIKit
 import Photos
 
 class DemoTableViewBackend: NSObject {
