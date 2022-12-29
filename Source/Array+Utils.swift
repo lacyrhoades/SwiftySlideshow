@@ -10,21 +10,21 @@ import Foundation
 
 extension Array where Element: Hashable {
     func after(where elementQuery: (Element) -> (Bool)) -> Element? {
-        if let index = self.index(where: elementQuery), index + 1 < self.count {
+        if let index = self.firstIndex(where: elementQuery), index + 1 < self.count {
             return self[index + 1]
         }
         return nil
     }
     
     func after(_ item: Element) -> Element? {
-        if let index = self.index(of: item) , index + 1 < self.count {
+        if let index = self.firstIndex(of: item) , index + 1 < self.count {
             return self[index + 1]
         }
         return nil
     }
     
     func before(_ item: Element) -> Element? {
-        if let index = self.index(of: item) , index > 0 {
+        if let index = self.firstIndex(of: item) , index > 0 {
             return self[index - 1]
         }
         return nil

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol ExternalScreenDelegateProtocol: class {
+public protocol ExternalScreenDelegateProtocol: AnyObject {
     func attachSlideshowController(toScreens screens: [UIScreen])
     func detachSlideshowController()
     func attachSlideshowController(toScreen screen: UIScreen)

@@ -21,14 +21,14 @@ public struct ExternalScreen {
     }
 }
 
-public protocol SlideshowControllerDelegate: class {
+public protocol SlideshowControllerDelegate: AnyObject {
     var screenCount: Int { get set }
     func addedScreen(_ screen: ExternalScreen)
     func removedScreen(_ screen: ExternalScreen)
     func removedAllScreens()
 }
 
-public protocol SlideshowControllerDataSource: class {
+public protocol SlideshowControllerDataSource: AnyObject {
     var isEmpty: Bool {get}
     func slideshowItemID(afterID: SlideshowItemID) -> SlideshowItemID?
     func slideshowItem(afterID: SlideshowItemID?) -> SlideshowItem?
