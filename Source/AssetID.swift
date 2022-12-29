@@ -15,8 +15,8 @@ struct AssetID: Hashable {
         return self.rawValue
     }
     
-    var hashValue: Int {
-        return self.rawValue.hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(self.rawValue)
     }
     
     init(_ rawValue: String) {

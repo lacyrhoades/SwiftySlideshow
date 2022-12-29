@@ -31,8 +31,8 @@ public struct SlideshowItemID: Hashable, Equatable {
         return lhs.rawValue == rhs.rawValue
     }
     
-    public var hashValue: Int {
-        return self.rawValue.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.rawValue)
     }
 }
 
